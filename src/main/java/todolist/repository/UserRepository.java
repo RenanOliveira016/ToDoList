@@ -69,5 +69,18 @@ public class UserRepository {
 	        em.close();
 	    }
 	}
+	
+	public static void validateId(Long id) {
+	    if (id == null || id <= 0) {
+	        throw new IllegalArgumentException("ID must be a positive number greater than zero.");
+	    }
+	}
+
+	public static void validateAge(int age) {
+	    if (age < 0 || age > 150) {
+	        throw new IllegalArgumentException("Age must be between 0 and 150.");
+	    }
+	}
+
 
 }

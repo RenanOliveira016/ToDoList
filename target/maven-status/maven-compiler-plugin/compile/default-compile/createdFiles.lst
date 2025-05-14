@@ -1,3 +1,12 @@
-todolist\model\Priority.class
+todolist\service\TaskService.class
+todolist\repository\UserRepository.class
+todolist\service\UserService.class
+todolist\repository\TaskRepository.class
+todolist\util\UserValidation.class
+todolist\enums\Priority.class
+todolist\app\App.class
+todolist\util\JpaUtil.class
+todolist\util\TaskValidation.class
 todolist\model\User.class
+todolist\util\PasswordEncoder.class
 todolist\model\Task.class

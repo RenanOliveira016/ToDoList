@@ -38,6 +38,16 @@ public class UserValidation {
 		}
 	}
 	
+	public static void validatePassword(String password) {
+	    if (password == null || password.trim().isEmpty()) {
+	        throw new IllegalArgumentException("Password cannot be empty.");
+	    }
+
+	    if (password.length() < 6 || password.length() > 60) {
+	        throw new IllegalArgumentException("Password must be between 6 and 60 characters long.");
+	    }
+	}
+	
 	public static void validateId(Long id) {
 	    if (id == null || id <= 0) {
 	        throw new IllegalArgumentException("ID must be a positive number greater than zero.");

@@ -1,3 +1,12 @@
-C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\model\Priority.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\app\App.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\enums\Priority.java
 C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\model\Task.java
 C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\model\User.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\repository\TaskRepository.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\repository\UserRepository.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\service\TaskService.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\service\UserService.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\util\JpaUtil.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\util\PasswordEncoder.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\util\TaskValidation.java
+C:\Users\Renan\eclipse-workspace\ToDoList\src\main\java\todolist\util\UserValidation.java

@@ -5,6 +5,7 @@ import todolist.model.User;
 import java.util.*;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import todolist.util.JpaUtil;
 
 public class UserRepository {
@@ -70,17 +71,25 @@ public class UserRepository {
 	    }
 	}
 	
-	public static void validateId(Long id) {
-	    if (id == null || id <= 0) {
-	        throw new IllegalArgumentException("ID must be a positive number greater than zero.");
+	public User findByEmail(String email) {
+	    EntityManager em = JpaUtil.getEntityManager();
+	    User user = null;
+
+	    try {
+	        user = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+	                 .setParameter("email", email)
+	                 .getSingleResult();
+	    } catch (NoResultException e) {
+	        // Nenhum usuário encontrado com esse email → retorna null
+	    } catch (Exception e) {
+	        System.out.println("Error finding user by email: " + e.getMessage());
+	    } finally {
+	        em.close();
 	    }
+
+	    return user;
 	}
 
-	public static void validateAge(int age) {
-	    if (age < 0 || age > 150) {
-	        throw new IllegalArgumentException("Age must be between 0 and 150.");
-	    }
-	}
 
 
 }

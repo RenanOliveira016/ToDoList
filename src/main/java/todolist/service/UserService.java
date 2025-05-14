@@ -1,9 +1,9 @@
 package todolist.service;
 
-import todolist.model.User;
+import todolist.model.*;
 import todolist.repository.UserRepository;
+import todolist.util.PasswordEncoder;
 import todolist.util.UserValidation;
-
 import java.util.List;
 
 public class UserService {
@@ -14,8 +14,11 @@ public class UserService {
         UserValidation.validateName(user.getName());
         UserValidation.validateEmail(user.getEmail());
         UserValidation.validateAge(user.getAge());
+        UserValidation.validatePassword(user.getPassword());
 
+        user.setPassword(PasswordEncoder.hash(user.getPassword()));
         userRepository.save(user);
+
     }
 
     public User getUserById(Long id) {
@@ -36,4 +39,17 @@ public class UserService {
             throw new IllegalArgumentException("User not found for ID: " + id);
         }
     }
+    
+    public User login(String email, String rawPassword) {
+        UserValidation.validateEmail(email);
+
+        User user = userRepository.findByEmail(email);
+
+        if (user == null || !PasswordEncoder.matches(rawPassword, user.getPassword())) {
+            throw new IllegalArgumentException("Invalid email or password.");
+        }
+
+        return user;
+    }
+
 }

@@ -1,6 +1,7 @@
 package todolist.service;
 
 import todolist.model.Task;
+import todolist.model.User;
 import todolist.repository.TaskRepository;
 import todolist.util.TaskValidation;
 
@@ -36,4 +37,28 @@ public class TaskService {
             throw new IllegalArgumentException("Task not found for ID: " + id);
         }
     }
+    
+    public List<Task> getTasksByUser(User user) {
+        if (user == null || user.getId() == null) {
+            throw new IllegalArgumentException("User must be logged in.");
+        }
+
+        return taskRepository.findByUser(user);
+    }
+
+    public void deleteTask(Long taskId, User user) {
+        TaskValidation.validateId(taskId);
+
+        Task task = taskRepository.findById(taskId);
+        if (task == null) {
+            throw new IllegalArgumentException("Task not found.");
+        }
+
+        if (!task.getUser().getId().equals(user.getId())) {
+            throw new IllegalArgumentException("You do not have permission to delete this task.");
+        }
+
+        taskRepository.delete(task);
+    }
+
 }

@@ -71,4 +71,22 @@ public class TaskRepository {
 	    }
 	}
 	
+	public List<Task> findByUser(User user) {
+	    EntityManager em = JpaUtil.getEntityManager();
+	    List<Task> tasks = new ArrayList<>();
+
+	    try {
+	        tasks = em.createQuery("SELECT t FROM Task t WHERE t.user = :user", Task.class)
+	                  .setParameter("user", user)
+	                  .getResultList();
+	    } catch (Exception e) {
+	        System.out.println("Error retrieving tasks: " + e.getMessage());
+	    } finally {
+	        em.close();
+	    }
+
+	    return tasks;
+	}
+
+	
 }
